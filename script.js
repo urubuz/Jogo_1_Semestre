@@ -1,6 +1,6 @@
 //mudar de telas
 function irjogo() {
-  window.location.href = "jogo.html"
+  window.location.href = "index.html"
 }
 function irdevs() {
   window.location.href = "quemsomos.html"
