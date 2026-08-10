@@ -1,12 +1,12 @@
 //mudar de telas
 function irjogo() {
-  window.location.href = "index.html"
+  window.location.href = "jogo.html"
 }
 function irdevs() {
   window.location.href = "quemsomos.html"
 }
 function irinicio() {
-  window.location.href = "iniciojogo.html"
+  window.location.href = "index.html"
 }
 
 let sangramentoativo = false;
