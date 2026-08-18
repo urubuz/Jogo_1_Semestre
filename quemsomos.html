@@ -1,39 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="description" content="Conheça o desenvolvedor do jogo">
+    <meta name="theme-color" content="#1B4332">
+    <title> RPG Turnos - Quem Sou Eu</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header class="barra-superior">
+    <header class="barra-superior" role="banner">
         <br>    
-        <img src="imagens/logo urubu.png" alt="Logo"  width="75px" height="75px" class="logo">
+        <img src="imagens/logo urubu.png" alt="Logo do jogo" width="75px" height="75px" class="logo" onclick="irinicio()" tabindex="0" onkeypress="irinicio()">
     </header>
-    <div class="divquemsomos">
-        <div class="imgquemsomos"></div>
-        <div class="divtextoquemsomos">QUEM SOU EU</div>
-        <div id="irinicio" onclick="irinicio()"><p>Voltar.</p></div>
-    </div>
-    <br><br><br>
-    <div class="umquemsomos">
-        <img src="imagens/rafael.png" alt="" width="250px" height="250px">
-        <div class="textoquemsomos">
-            <p class="nome">Rafael Magalhães Barreto</p>
-            <p class="coisas">19 anos</p>
-            <p class="coisas">RA: 74126009-5</p>
-            <p class="coisas">nectar.rafael@gmail.com</p>
-        </div>
-    </div>
-    <div class="sobremim">
-        <p class="textosobremim">
-            Durante meu ensino médio, completei um curso técnico de informática na FECAP, aprendendo sobre assuntos como lógica de programação, banco de dados, redes de computadores, e programação full-stack.
-        </p>
-        <p class="textosobremim">
-             No fim do meu curso, realizei meu Trabalho de Conclusão de Curso, um software de gestão de transporte para uma empresa real, no qual atuei em toda a parte de programação, além de auxiliar no banco de dados.
-        </p>
-    </div>
+    
+    <main>
+        <section class="divquemsomos" aria-label="Banner quem sou eu">
+            <div class="imgquemsomos" aria-hidden="true"></div>
+            <div class="divtextoquemsomos">QUEM SOU EU</div>
+            <div id="irinicio" onclick="irinicio()" tabindex="0" onkeypress="irinicio()">
+                <p>Voltar.</p>
+            </div>
+        </section>
+        
+        <br><br><br>
+        
+        <article class="umquemsomos">
+            <img src="imagens/rafael.png" alt="Foto do desenvolvedor" width="250px" height="250px">
+            <div class="textoquemsomos">
+                <p class="nome">Rafael Magalhães Barreto</p>
+                <p class="coisas">19 anos</p>
+                <p class="coisas">RA: 74126009-5</p>
+                <p class="coisas">nectar.rafael@gmail.com</p>
+            </div>
+        </article>
+        
+        <section class="sobremim">
+            <p class="textosobremim">
+                Durante meu ensino médio, completei um curso técnico de informática na FECAP, aprendendo sobre assuntos como lógica de programação, banco de dados, redes de computadores, e programação full-stack.
+            </p>
+            <p class="textosobremim">
+                 No fim do meu curso, realizei meu Trabalho de Conclusão de Curso, um software de gestão de transporte para uma empresa real, no qual atuei em toda a parte de programação, além de auxiliar no banco de dados.
+            </p>
+        </section>
+    </main>
+
     <script src="script.js"></script>
 </body>
 </html>

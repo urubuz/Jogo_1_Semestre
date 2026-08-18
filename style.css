@@ -1,707 +1,960 @@
-*{
+/* ============================================
+   CSS Variables & Reset
+   ============================================ */
+:root {
+    --color-primary: #1B4332;
+    --color-secondary: #2D6A4F;
+    --color-accent: #5cff9d;
+    --color-danger: #ff4444;
+    --color-warning: #ffaa00;
+    --color-success: #44ff44;
+    --color-text: #333333;
+    --color-text-light: #666666;
+    --color-bg: #f5f5f5;
+    --color-card: #fffbf0;
+    --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+    --shadow-md: 0 4px 8px rgba(0,0,0,0.15);
+    --shadow-lg: 0 8px 16px rgba(0,0,0,0.2);
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
+    --border-radius: 12px;
+    --border-radius-lg: 20px;
+}
+
+* {
     font-family: "Press Start 2P", system-ui;
     font-size: 24px;
     margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-body{
+body {
     position: relative;
     height: 100%;
+    background-color: var(--color-bg);
+    line-height: 1.6;
 }
 
-#telaescolha::before{
-  content: "";
-  position: fixed;
-  inset: 0;
-
-  background: url(imagens/cenariorpg.png) center/cover no-repeat;
-
-  filter: blur(8px);
-  z-index: -1;
-}
-
+/* ============================================
+   Header & Navigation
+   ============================================ */
 .barra-superior {
-  width: 100%;
-  height: 70px;
-  background-color: #1B4332;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1000;
-  display: flex;
-  text-align: center;
-}
-
-.logo{
-    position: absolute;
-    left: 48%;
-    transition: all 0.3s ease;
-}
-
-.logo:hover{
-  transform: scale(1.3);
-}
-
-#telaescolha{
+    width: 100%;
+    height: 70px;
+    background-color: var(--color-primary);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
     display: flex;
-    justify-content:center;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-md);
+}
+
+.logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: transform var(--transition-normal);
+    cursor: pointer;
+}
+
+.logo:hover {
+    transform: translateX(-50%) scale(1.2);
+}
+
+/* ============================================
+   Home Page - Banner
+   ============================================ */
+.divsobrejogo {
+    position: relative;
+    width: 100%;
+    height: 60vh;
+    min-height: 400px;
+    overflow: hidden;
+}
+
+.imgsobrejogo {
+    position: absolute;
+    inset: 0;
+    background: url("imagens/videogame.png") center/cover;
+    filter: blur(10px);
+    transform: scale(1.1);
+}
+
+.divtextosobrejogo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: clamp(32px, 5vw, 65px);
+    font-weight: bold;
+    font-family: 'Segoe UI', sans-serif;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+}
+
+#desenvolvedores {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--color-secondary);
+    height: auto;
+    padding: 15px 30px;
+    border-radius: var(--border-radius);
+    text-align: center;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+}
+
+#desenvolvedores:hover {
+    background-color: var(--color-accent);
+    transform: translateX(-50%) scale(1.05);
+}
+
+#desenvolvedores p {
+    font-family: 'Segoe UI', sans-serif;
+    color: white;
+    font-weight: bold;
+    transition: color var(--transition-normal);
+}
+
+#desenvolvedores:hover p {
+    color: var(--color-primary);
+}
+
+/* ============================================
+   Home Page - About Section
+   ============================================ */
+.sobreojogo {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.textosobrejogo {
+    font-family: 'Segoe UI', sans-serif;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    font-size: 18px;
+    text-align: justify;
+    color: var(--color-text);
+}
+
+#aaa {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    padding: 40px 0;
+}
+
+#jornada {
+    background-color: var(--color-secondary);
+    padding: 20px 40px;
+    border-radius: var(--border-radius-lg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    box-shadow: var(--shadow-md);
+}
+
+#jornada:hover {
+    background-color: var(--color-accent);
+    transform: scale(1.05);
+    box-shadow: var(--shadow-lg);
+}
+
+#jornada p {
+    font-family: "Press Start 2P", system-ui;
+    color: var(--color-accent);
+    font-size: clamp(12px, 2vw, 16px);
+    transition: color var(--transition-normal);
+}
+
+#jornada:hover p {
+    color: var(--color-primary);
+    animation: piscarjornada 1.2s infinite;
+}
+
+@keyframes piscarjornada {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.1); opacity: 0.8; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* ============================================
+   Quem Sou Eu Page
+   ============================================ */
+.divquemsomos {
+    position: relative;
+    width: 100%;
+    height: 60vh;
+    min-height: 400px;
+    overflow: hidden;
+}
+
+.imgquemsomos {
+    position: absolute;
+    inset: 0;
+    background-color: #659e84;
+    transform: scale(1.1);
+}
+
+.divtextoquemsomos {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: clamp(32px, 5vw, 65px);
+    font-weight: bold;
+    font-family: 'Segoe UI', sans-serif;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+}
+
+#irinicio {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--color-secondary);
+    padding: 15px 30px;
+    border-radius: var(--border-radius);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+}
+
+#irinicio:hover {
+    background-color: var(--color-accent);
+    transform: translateX(-50%) scale(1.05);
+}
+
+#irinicio p {
+    font-family: 'Segoe UI', sans-serif;
+    color: white;
+    font-weight: bold;
+    transition: color var(--transition-normal);
+}
+
+#irinicio:hover p {
+    color: var(--color-primary);
+}
+
+.umquemsomos {
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+    width: 100%;
+    align-items: center;
+    padding: 40px 20px;
+    flex-wrap: wrap;
+}
+
+.textoquemsomos {
+    max-width: 400px;
+}
+
+.nome {
+    font-weight: bolder;
+    font-size: clamp(20px, 3vw, 28px);
+    color: var(--color-primary);
+}
+
+.coisas {
+    font-weight: bold;
+    font-size: clamp(16px, 2vw, 22px);
+    color: var(--color-text-light);
+    margin: 5px 0;
+}
+
+.sobremim {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.textosobremim {
+    font-family: 'Segoe UI', sans-serif;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    font-size: 18px;
+    text-align: justify;
+    color: var(--color-text);
+}
+
+/* ============================================
+   Character Selection
+   ============================================ */
+#telaescolha {
+    display: flex;
+    justify-content: center;
     align-items: center;
     height: 100vh;
-    gap: 150px;
+    gap: 80px;
+    padding: 100px 20px 20px;
+    flex-wrap: wrap;
 }
-.personagens{
-    width: 400px;
-    height: 500px;
-    align-items: center;
-    border-radius: 15px;
-    background-color: antiquewhite;
+
+#telaescolha::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: url(imagens/cenariorpg.png) center/cover no-repeat;
+    filter: blur(8px);
+    z-index: -1;
+}
+
+.personagens {
+    width: 350px;
+    min-height: 500px;
+    border-radius: var(--border-radius-lg);
+    background-color: var(--color-card);
     display: flex;
     flex-direction: column;
     align-items: center;
-    transition: all 0.3s ease;
+    transition: all var(--transition-normal);
+    box-shadow: var(--shadow-lg);
+    cursor: pointer;
+    padding: 20px;
 }
 
 .personagens:hover {
-  transform: scale(1.05);
-  cursor: pointer;
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
 }
 
-.linha{
-    width: 350px;
+.personagens h1 {
+    font-size: clamp(20px, 3vw, 28px);
+    color: var(--color-primary);
+    margin-bottom: 10px;
+}
+
+.linha {
+    width: 90%;
     height: 2px;
-    background-color: black;
+    background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
+    margin: 10px 0;
 }
 
-.status{
+.status {
     display: flex;
-    margin-right: 20px;
-    margin-top: 10px;
+    align-items: center;
+    gap: 10px;
+    margin: 8px 0;
 }
 
-.stat{
-    font-size: 20px;
-    margin-top: 22px;
+.stat {
+    font-size: 18px;
+    color: var(--color-text);
 }
 
-.statu1{
-    font-size: 20px;
-    margin-top: 22px;
-    color: green;  
+.statu1 {
+    font-size: 18px;
+    color: var(--color-success);
+    font-weight: bold;
 }
 
-.statu2{
-    font-size: 20px;
-    margin-top: 22px;
-    color: red; 
+.statu2 {
+    font-size: 18px;
+    color: var(--color-danger);
+    font-weight: bold;
 }
-#escolhermago {
-  font-size: 30px;
-  text-align: center;
-  animation: piscar 1.2s infinite;
-}
+
+#escolhermago,
 #escolherguerreiro {
-  font-size: 30px;
-  text-align: center;
-  animation: piscar 1.2s infinite;
-}
-@keyframes piscar {
-  0% {
-    transform: scale(1);
-    color: #ff0000;
-    opacity: 1;
-  }
-  33% {
-    transform: scale(1.2);
-    color: #0400ff;
-    opacity: 0.6;
-  }
-  66% {
-    transform: scale(1.1);
-    color: #15ff00;
-    opacity: 1;
-  }
-  100% {
-    transform: scale(1);
-    color: #ff0000;
-    opacity: 1;
-  }
+    font-size: 24px;
+    text-align: center;
+    color: var(--color-secondary);
+    animation: piscar 1.5s infinite;
+    margin-top: auto;
 }
 
-#telacombate{
+@keyframes piscar {
+    0% { transform: scale(1); color: var(--color-secondary); opacity: 1; }
+    33% { transform: scale(1.1); color: var(--color-accent); opacity: 0.7; }
+    66% { transform: scale(1.05); color: var(--color-secondary); opacity: 1; }
+    100% { transform: scale(1); color: var(--color-secondary); opacity: 1; }
+}
+
+/* ============================================
+   Battle Screen
+   ============================================ */
+#telacombate {
     width: 100%;
     height: 100vh;
     margin: 0;
     background: url(imagens/cenariorpg.png) center/cover no-repeat;
     position: relative;
+    overflow: hidden;
 }
 
 #imgjogador {
-  position: absolute;
-  left: 120px;
-  top: 350px;
+    position: absolute;
+    left: 10%;
+    bottom: 15%;
+    max-width: 200px;
+    height: auto;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
 }
 
 #imginimigo {
-  position: absolute;
-  bottom: 120px;
-  right: 150px;
-}
-
-.divsobrejogo {
-  position: relative;
-  width: 1905px;
-  height: 600px;
-  overflow: hidden;
-}
-
-.imgsobrejogo{
     position: absolute;
-  inset: 0;
-  background: url("imagens/videogame.png") center/cover;
-  filter: blur(10px);
-  transform: scale(1.1);
+    right: 10%;
+    bottom: 15%;
+    max-width: 400px;
+    height: auto;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
 }
 
-.divtextosobrejogo {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: white;
-  font-size: 65px;
-  font-weight: bold;
-  font-family: 'Segoe UI';
-}
-#desenvolvedores{
-  position: absolute;
-  top: 95%;
-  left: 50%;
-  background-color: #2D6A4F;
-  height: 75px;
-  width: 300px;
-  transform: translate(-50%, -50%);
-  border-radius: 12px;
-  text-align: center;
-}
-
-#desenvolvedores p:hover{
-    color: #5cff9d;
-    transform: scale(1.1);
-}
-
-#desenvolvedores p{
-  font-family: 'Segoe UI';
-  color: white;
-  font-weight: bold;
-  transition: all 0.3s ease;
-}
-
-.sobreojogo{
-  max-width: 700px;
-  margin: 0 auto;
-  padding: 40px 20px;
-}
-
-.textosobrejogo{
-  font-family: 'Segoe UI';
-  line-height: 1.6;
-  margin-bottom: 20px;
-  font-size: 18px;
-  text-align: justify;
-}
-
-#jornada{
-  background-color: #2D6A4F;
-  height: 100px;
-  width: 400px;
-  border-radius: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-#jornada p{
-  font-family: "Press Start 2P", system-ui;
-  animation: piscarjornada 1.2s infinite;
-  color: #5cff9d;
-  font-size: 16px;
-}
-
-@keyframes piscarjornada {
-  0% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(1.2);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-#aaa{
-  display: flex;
-  width: 100%;
-  justify-content: center;
-}
-
-.divquemsomos {
-  position: relative;
-  width: 1905px;
-  height: 600px;
-  overflow: hidden;
-}
-
-.imgquemsomos{
+/* Health Bars */
+.vida,
+.vidainimigo {
+    width: 180px;
+    height: 30px;
+    border: 3px solid var(--color-primary);
+    background-color: rgba(255,255,255,0.9);
     position: absolute;
-  inset: 0;
-  background-color: #659e84;
-  transform: scale(1.1);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
 }
 
-.divtextoquemsomos {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: white;
-  font-size: 65px;
-  font-weight: bold;
-  font-family: 'Segoe UI';
+.vida {
+    left: 12%;
+    bottom: calc(15% + 210px);
 }
 
-#irinicio{
-  position: absolute;
-  top: 95%;
-  left: 50%;
-  background-color: #2D6A4F;
-  height: 75px;
-  width: 300px;
-  transform: translate(-50%, -50%);
-  border-radius: 12px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.vidainimigo {
+    right: 12%;
+    bottom: calc(15% + 410px);
 }
 
-#irinicio p:hover{
-    color: #5cff9d;
+.vida div,
+.vidainimigo div {
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(90deg, #ff4444, #ff6666);
+    transition: width var(--transition-normal);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#vidanumeroinimigo,
+#vidanumerojogador {
+    color: white;
+    font-size: 14px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+/* Effects Display */
+.efeitoduracaoeu,
+.efeitoduracaoinimigo {
+    display: flex;
+    position: absolute;
+    width: 200px;
+    height: 40px;
+    justify-content: center;
+    gap: 20px;
+}
+
+.efeitoduracaoeu {
+    left: 5%;
+    top: 20%;
+}
+
+.efeitoduracaoinimigo {
+    right: 5%;
+    top: 20%;
+}
+
+.duracao {
+    color: var(--color-warning);
+    font-size: 16px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.efeitoseu,
+.efeitosinimigo {
+    display: flex;
+    position: absolute;
+    width: 200px;
+    height: 60px;
+    justify-content: center;
+    gap: 10px;
+}
+
+.efeitoseu {
+    left: 5%;
+    top: 25%;
+}
+
+.efeitosinimigo {
+    right: 5%;
+    top: 25%;
+}
+
+.efeitos {
+    background-color: rgba(255,251,240,0.95);
+    border-radius: var(--border-radius);
+    width: 50px;
+    height: 50px;
+    display: none;
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition-fast);
+}
+
+.efeitos:hover {
     transform: scale(1.1);
 }
 
-#irinicio p{
-  font-family: 'Segoe UI';
-  color: white;
-  font-weight: bold;
-  transition: all 0.3s ease;
-  margin-bottom: 12px;
+/* Actions Panel */
+.acoes {
+    background-color: rgba(255,251,240,0.95);
+    width: 280px;
+    padding: 20px;
+    left: 50%;
+    bottom: 30px;
+    transform: translateX(-50%);
+    position: absolute;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-lg);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
-.umquemsomos{
-  display: flex;
-  justify-content: center;
-  gap: 150px;
-  width: 100%;
-  align-items: center;
+#atacar,
+#curar,
+#habilidades {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: all var(--transition-fast);
 }
 
-.textoquemsomos{
-  max-width: 400px;
+#atacar:hover,
+#curar:hover,
+#habilidades:hover {
+    background-color: rgba(45,106,79,0.1);
+    transform: translateX(5px);
 }
 
-.nome{
-  font-weight: bolder;
-  font-size: 28px;
+#atacar p,
+#curar p,
+#habilidades p {
+    margin: 0;
+    transition: color var(--transition-fast);
 }
 
-.coisas{
-  font-weight: bold;
-  font-size: 22px;
-  color: rgb(78, 78, 78);
+#atacar:hover p { color: var(--color-danger); }
+#curar:hover p { color: var(--color-success); }
+#habilidades:hover p { color: var(--color-warning); }
+
+.linhadois {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--color-text-light), transparent);
 }
 
-.sobremim{
-  max-width: 780px;
-  margin: 0 auto;
-  padding: 40px 20px;
+/* Skills Panel */
+#skill {
+    display: none;
+    position: absolute;
+    left: calc(50% + 160px);
+    bottom: 30px;
+    width: 300px;
+    background-color: rgba(255,251,240,0.95);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-lg);
+    padding: 15px;
 }
 
-.textosobremim{
-  font-family: 'Segoe UI';
-  line-height: 1.6;
-  margin-bottom: 20px;
-  font-size: 18px;
-  text-align: justify;
+#skill p {
+    font-size: 16px;
+    margin: 8px 0;
+    padding: 8px;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: all var(--transition-fast);
 }
 
-#imginimigo{
-  margin-left: 1300px;
-  margin-top: 350px;
+#skill p:hover {
+    color: var(--color-danger);
+    background-color: rgba(255,68,68,0.1);
 }
 
-.acoes{
-  background-color: antiquewhite;
-  width: 250px;
-  height: 225px;
-  left: 500px;
-  top: 400px;
-  position: absolute;
-  border-radius: 12px;
-}
-
-#atacar{
-  display: flex;
-  align-items: center;
-}
-#atacar p{
-  margin-left: 10px;
-  transition: all 0.3s ease;
-}
-#atacar p:hover{
-  color: red;
-  transform: scale(1.2);
-}
-
-#curar{
-  display: flex;
-  align-items: center;
-}
-#curar p{
-  transition: all 0.3s ease;
-}
-#curar p:hover{
-  color: red;
-  transform: scale(1.2);
-}
-
-#habilidades{
-  display: flex;
-  align-items: center;
-}
-#habilidades p{
-  transition: all 0.3s ease;
-}
-#habilidades p:hover{
-  color: red;
-  transform: scale(1.2);
-}
-
-#skill{
-  display: block;
-  position: absolute;
-  left: 770px;
-  top: 400px;
-  width: 320px;
-  height: 225px;
-  background-color: antiquewhite;
-  border-radius: 10px;
-}
-
-#skill p{
-  font-size: 17px;
-  margin-left: 10px;
-  margin-top: 10px;
-  transition: all 0.3s ease;
-}
-#skill p:hover{
-  color: red;
-}
-
-.linhadois{
-    width: 220px;
-    height: 2px;
-    background-color: black;
-    margin-left: 14px;
-}
-.linhatres{
-    width: 290px;
-    height: 2px;
-    background-color: black;
-    margin-left: 14px;
-}
-
-.vida{
-  width: 150px;
-  height: 25px;
-  border: black solid 1px;
-  background-color: white;
-  margin-bottom: 5px;
-  position: absolute;
-  left: 290px;
-  top: 350px;
-  border-radius: 5px;
-  overflow: hidden;
-}
-
-.vida div{
-  height: 100%;
-  width: 100%;
-  background-color: red;
-  transition: width 0.3s;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.vidainimigo{
-  width: 150px;
-  height: 25px;
-  border: black solid 1px;
-  background-color: white;
-  margin-bottom: 5px;
-  position: absolute;
-  left: 1390px;
-  top: 330px;
-  border-radius: 5px;
-  overflow: hidden;
-}
-
-.vidainimigo div{
-  height: 100%;
-  width: 100%;
-  background-color: red;
-  transition: width 0.3s;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-#vidanumeroinimigo{
-  color: white;
-  font-size: 14px;
-}
-
-#vidanumerojogador{
-  color: white;
-  font-size: 14px;
-}
-
-@keyframes tremer {
-  0% { transform: translate(0); }
-  25% { transform: translate(-5px, 0); }
-  50% { transform: translate(5px, 0); }
-  75% { transform: translate(-5px, 0); }
-  100% { transform: translate(0); }
-}
-
-.dano {
-  animation: tremer 0.3s;
-}
-
-@keyframes curar {
-  0% { filter: brightness(1); }
-  50% { filter: brightness(2) hue-rotate(90deg); }
-  100% { filter: brightness(1); }
-}
-
-.cura {
-  animation: curar 0.5s;
-}
-
-#resultado{
-  position: fixed;
-  height: 100%;
-  width: 100%;
-  display: none;
-  justify-content: center;
-  align-items: center;
-  font-size: 60px;
-  font-weight: bold;
-  text-align: center;
-  animation: piscarresultado 0.8s infinite;
-  background: rgba(0, 0, 0, 0.7);
-    z-index: 999;
-}
-
-@keyframes piscarresultado {
-  0% {
-    transform: scale(1);
-  } 
-  50% {
-    transform: scale(1.3);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-.turnoacao{
-  transform: translate(-50%, -50%);
-  position: absolute;
-  left: 50%;
-  top: 12%;
-}
-.turnoacao p{
-  color: yellow;
-  font-size: 28px;
-  transform: scale(1);
-  transition: opacity 0.3s;
-}
-.animarturnoacao {
-  animation: aparecermsg 1.5s ease;
-}
-@keyframes aparecermsg {
-
-  0% {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-
-  20% {
-    opacity: 1;
-    transform: scale(1.1);
-  }
-
-  80% {
-    opacity: 1;
-    transform: scale(1.1);
-  }
-
-  100% {
-    opacity: 0;
-    transform: scale(1);
-  }
-}
-
-#telarecompensa{
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 100%;
-  background: url(imagens/cenariorpg.png) center/cover no-repeat;
-  z-index: 100;
-  justify-content: center;
-  align-items: center;
-  gap: 50px;
-}
-
-.aa{
-  position: absolute;
-  transform: translate(-50%, -50%);
-  left: 25%;
-  top: 20%;
-  color: yellow;
-  font-size: 26px;
-  animation: aaaa 1.2s infinite;
-}
-
-@keyframes aaaa{
-  0%{
-    transform: scale(1);
-  }
-  50%{
-    transform: scale(1.2);
-  }
-  100%{
-    transform: scale(1);
-  }
-}
-
-.recompensas{
-  background-color: antiquewhite;
-  width: 300px;
-  height: 300px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: 20px;
-  text-align: center;
-  margin-left: 15px;
-  border-radius: 15px;
-  padding: 10px;
-  transition: all 0.3s ease;
-}
-.recompensas:hover{
-  transform: scale(1.2);
-}
-
-.interrogacao{
-  font-size: 60px;
-}
-
-.efeitoduracaoeu{
-  display: flex;
-  position: absolute;
-  transform: translate(-50%, -50%);
-  width: 300px;
-  height: 60px;
-  left: 20%;
-  top: 25%;
-  justify-content: center;
-  gap: 35px;
-  flex-wrap:wrap;
-  align-content: flex-end;
-}
-.efeitoduracaoinimigo{
-  display: flex;
-  position: absolute;
-  transform: translate(-50%, -50%);
-  width: 300px;
-  height: 60px;
-  left: 78%;
-  top: 23%;
-  justify-content: center;
-  gap: 35px;
-  flex-wrap:wrap;
-  align-content: flex-end;
-}
-.duracao{
-  color: yellow;
-}
-.efeitoseu{
-  display: flex;
-  position: absolute;
-  transform: translate(-50%, -50%);
-  width: 300px;
-  height: 60px;
-  left: 20%;
-  top: 32%;
-  justify-content: center;
-  gap: 10px;
-}
-.efeitosinimigo{
-  display: flex;
-  position: absolute;
-  transform: translate(-50%, -50%);
-  width: 300px;
-  height: 60px;
-  left: 78%;
-  top: 30%;
-  justify-content: center;
-  gap: 10px;
-}
-.efeitos{
-  background-color: antiquewhite;
-  border-radius: 5px;
-  width: 50px;
-  height: 50px;
-  display: none;
+.linhatres {
+    width: 90%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--color-text-light), transparent);
+    margin: 5px auto;
 }
 
 .skillusada {
-    color: gray;
-    opacity: 0.6;
+    color: var(--color-text-light) !important;
+    opacity: 0.5;
     pointer-events: none;
+    text-decoration: line-through;
 }
 
-.info{
-  position: absolute;
-  width: 100%;
-  height: 50px;
-  transform: translate(-50%, -50%);
-  top: 97%;
-  left: 50%;
-  justify-content: center;
-  align-items: center;
-  display: flex;
+/* Info & Messages */
+.info {
+    position: absolute;
+    width: 100%;
+    padding: 10px;
+    bottom: 10px;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
 .info p {
-  color: yellow;
+    color: var(--color-warning);
+    font-size: 14px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    background-color: rgba(0,0,0,0.5);
+    padding: 8px 16px;
+    border-radius: var(--border-radius);
+}
+
+.turnoacao {
+    transform: translate(-50%, -50%);
+    position: absolute;
+    left: 50%;
+    top: 15%;
+}
+
+.turnoacao p {
+    color: var(--color-warning);
+    font-size: clamp(18px, 3vw, 28px);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.animarturnoacao {
+    animation: aparecermsg 1.5s ease;
+}
+
+@keyframes aparecermsg {
+    0% { opacity: 0; transform: scale(0.9); }
+    20% { opacity: 1; transform: scale(1.1); }
+    80% { opacity: 1; transform: scale(1.1); }
+    100% { opacity: 0; transform: scale(1); }
+}
+
+/* Result Screen */
+#resultado {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    font-size: clamp(24px, 5vw, 60px);
+    font-weight: bold;
+    text-align: center;
+    animation: piscarresultado 0.8s infinite;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 999;
+    padding: 20px;
+}
+
+@keyframes piscarresultado {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* Reward Screen */
+#telarecompensa {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    background: url(imagens/cenariorpg.png) center/cover no-repeat;
+    z-index: 100;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    padding: 100px 20px 20px;
+    flex-wrap: wrap;
+}
+
+.aa {
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--color-warning);
+    font-size: clamp(16px, 3vw, 26px);
+    animation: aaaa 1.2s infinite;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    white-space: nowrap;
+}
+
+@keyframes aaaa {
+    0% { transform: translateX(-50%) scale(1); }
+    50% { transform: translateX(-50%) scale(1.1); }
+    100% { transform: translateX(-50%) scale(1); }
+}
+
+.recompensas {
+    background-color: rgba(255,251,240,0.95);
+    width: 280px;
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    text-align: center;
+    border-radius: var(--border-radius-lg);
+    padding: 20px;
+    transition: all var(--transition-normal);
+    cursor: pointer;
+    box-shadow: var(--shadow-lg);
+}
+
+.recompensas:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+}
+
+.interrogacao {
+    font-size: 60px;
+    color: var(--color-warning);
+}
+
+/* ============================================
+   Animations
+   ============================================ */
+@keyframes tremer {
+    0% { transform: translate(0); }
+    25% { transform: translate(-5px, 0); }
+    50% { transform: translate(5px, 0); }
+    75% { transform: translate(-5px, 0); }
+    100% { transform: translate(0); }
+}
+
+.dano {
+    animation: tremer 0.3s;
+}
+
+@keyframes curar {
+    0% { filter: brightness(1); }
+    50% { filter: brightness(1.5) hue-rotate(90deg); }
+    100% { filter: brightness(1); }
+}
+
+.cura {
+    animation: curar 0.5s;
+}
+
+@keyframes esquiva {
+    0% { opacity: 1; transform: translateX(0); }
+    50% { opacity: 0.5; transform: translateX(30px); }
+    100% { opacity: 1; transform: translateX(0); }
+}
+
+.esquiva {
+    animation: esquiva 0.4s;
+}
+
+/* ============================================
+   Responsive Design
+   ============================================ */
+@media (max-width: 1200px) {
+    #imginimigo {
+        max-width: 300px;
+        right: 5%;
+    }
+    
+    .vidainimigo {
+        right: 8%;
+    }
+}
+
+@media (max-width: 992px) {
+    #telaescolha {
+        gap: 40px;
+    }
+    
+    .personagens {
+        width: 300px;
+        min-height: 450px;
+    }
+    
+    #imgjogador {
+        left: 5%;
+        max-width: 150px;
+    }
+    
+    #imginimigo {
+        right: 5%;
+        max-width: 250px;
+    }
+}
+
+@media (max-width: 768px) {
+    #telaescolha {
+        flex-direction: column;
+        padding: 100px 20px 20px;
+    }
+    
+    .personagens {
+        width: 90%;
+        max-width: 350px;
+    }
+    
+    .acoes {
+        width: 90%;
+        max-width: 300px;
+        bottom: 20px;
+    }
+    
+    #skill {
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 180px;
+        width: 90%;
+        max-width: 300px;
+    }
+    
+    #imgjogador {
+        left: 10%;
+        bottom: 20%;
+        max-width: 120px;
+    }
+    
+    #imginimigo {
+        right: 10%;
+        bottom: 20%;
+        max-width: 180px;
+    }
+    
+    .vida {
+        left: 8%;
+        bottom: calc(20% + 130px);
+        width: 140px;
+    }
+    
+    .vidainimigo {
+        right: 8%;
+        bottom: calc(20% + 190px);
+        width: 140px;
+    }
+    
+    .efeitoduracaoeu,
+    .efeitoduracaoinimigo {
+        width: 150px;
+    }
+    
+    .efeitoseu,
+    .efeitosinimigo {
+        width: 150px;
+    }
+    
+    .recompensas {
+        width: 250px;
+        min-height: 250px;
+    }
+}
+
+@media (max-width: 480px) {
+    * {
+        font-size: 18px;
+    }
+    
+    .barra-superior {
+        height: 60px;
+    }
+    
+    .logo {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .divtextosobrejogo,
+    .divtextoquemsomos {
+        font-size: 28px;
+    }
+    
+    .acoes {
+        padding: 15px;
+    }
+    
+    #atacar img,
+    #curar img,
+    #habilidades img {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .efeitos {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .efeitos img {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* ============================================
+   Accessibility
+   ============================================ */
+:focus {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+    outline: none;
+}
+
+:focus-visible {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 2px;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+    :root {
+        --color-card: #ffffff;
+        --color-text: #000000;
+    }
+    
+    .personagens,
+    .recompensas,
+    .acoes,
+    #skill {
+        border: 3px solid #000;
+    }
 }
