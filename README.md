@@ -28,20 +28,6 @@
 
 ---
 
-## Features
-
-| Feature | Descrição |
-|---|---|
-| **2 Personagens** | Guerreiro (tanque) e Mago (DPS) — cada um com 3 habilidades únicas |
-| **Sistema de Efeitos** | Sangramento, queimadura, atordoamento, escudo, aparo e esquiva |
-| **2 Fases** | Batalhe contra um Goblin, escolha uma recompensa, enfrente o Chefe |
-| **Recompensas** | +4 ataque, +40 vida ou habilidade nova — escolha estrategicamente |
-| **Sons Sintetizados** | Efeitos sonoros via Web Audio API — sem arquivos externos |
-| **Save/Load** | Progresso salvo automaticamente no navegador |
-| **Acessibilidade** | Suporte completo a leitores de tela e navegação por teclado |
-| **Responsivo** | Funciona em desktop, tablet e mobile |
-| **Animações** | Feedback visual para dano, cura, esquiva e habilidades |
-
 ## How to Play
 
 ### 1. Inicie a jornada
