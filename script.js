@@ -39,7 +39,7 @@ let inimigo = {
 let boss = {
   nome: "Chefe goblin",
   vida: 120,
-  vidaMax: 140,
+  vidaMax: 120,
   ataque: 16,
   img: "imagens/boss.png"
 };
