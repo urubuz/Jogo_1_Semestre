@@ -167,7 +167,8 @@ img{
 
 .info{
   width: 100%;
-  min-height: 40px;
+  height: clamp(36px, 6vw, 56px);
+  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -181,8 +182,11 @@ img{
 
 .turnoacao{
   width: 100%;
+  height: clamp(48px, 8vw, 76px); /* altura FIXA (não min-height): a mensagem aparece/some, mas a caixa nunca muda de tamanho */
+  overflow: hidden;
   display: flex;
   justify-content: center;
+  align-items: center;
   padding: 4px 12px;
 }
 .turnoacao p{
@@ -255,6 +259,7 @@ img{
   gap: 8px;
   flex-wrap: wrap;
   width: 100%;
+  height: clamp(32px, 6vw, 50px); /* espaço fixo, não depende de quantos ícones estão visíveis */
 }
 
 .efeitos{
