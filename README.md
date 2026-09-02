@@ -11,6 +11,6 @@ Um RPG de turnos onde você:
 - Enfrenta uma série de efeitos possíveis, ativados por ações
 - Recebe uma recompensa após vencer a primeira batalha
 
-## Como jogar
+## Clique para jogar
 
 🔗 [urubuz.github.io/Jogo_1_Semestre](https://urubuz.github.io/Jogo_1_Semestre/)
