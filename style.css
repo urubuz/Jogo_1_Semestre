@@ -1,0 +1,668 @@
+:root{
+  --header-h: clamp(48px, 8vw, 70px);
+  --verde-escuro: #1B4332;
+  --verde: #2D6A4F;
+  --verde-claro: #5cff9d;
+}
+
+*{
+  font-family: "Press Start 2P", system-ui;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html{
+  font-size: 100%;
+}
+
+body{
+  position: relative;
+  min-height: 100%;
+  padding-top: var(--header-h);
+  overflow-x: hidden;
+}
+
+img{
+  max-width: 100%;
+  height: auto;
+}
+
+/* ===================== HEADER ===================== */
+.barra-superior {
+  width: 100%;
+  height: var(--header-h);
+  background-color: var(--verde-escuro);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.barra-superior br{
+  display: none;
+}
+
+.logo{
+  width: clamp(42px, 7vw, 75px) !important;
+  height: clamp(42px, 7vw, 75px) !important;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.logo:hover{
+  transform: scale(1.3);
+}
+
+/* ===================== TELA DE ESCOLHA DE PERSONAGEM ===================== */
+#telaescolha{
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - var(--header-h));
+  gap: clamp(24px, 5vw, 150px);
+  padding: clamp(20px, 4vw, 60px) 20px;
+}
+
+#telaescolha::before{
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: url(imagens/cenariorpg.png) center/cover no-repeat;
+  filter: blur(8px);
+  z-index: -1;
+}
+
+.personagens{
+  width: min(400px, 90vw);
+  min-height: 480px;
+  padding: clamp(16px, 3vw, 24px) 0 clamp(24px, 4vw, 34px);
+  border-radius: 15px;
+  background-color: antiquewhite;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(10px, 1.6vw, 16px);
+  transition: all 0.3s ease;
+}
+
+.personagens h1{
+  font-size: clamp(22px, 4vw, 32px);
+  text-align: center;
+}
+
+.personagens img{
+  width: clamp(150px, 24vw, 200px) !important;
+  height: auto !important;
+  object-fit: contain;
+}
+
+.personagens:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+.linha{
+  width: 88%;
+  max-width: 350px;
+  height: 2px;
+  background-color: black;
+  margin: 10px 0;
+}
+
+.status{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  justify-content: center;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.status img{
+  width: clamp(36px, 6vw, 60px) !important;
+  height: clamp(36px, 6vw, 60px) !important;
+}
+
+.stat, .statu1, .statu2{
+  font-size: clamp(12px, 2.2vw, 20px);
+}
+
+.statu1{ color: green; }
+.statu2{ color: red; }
+
+#escolhermago, #escolherguerreiro {
+  font-size: clamp(16px, 3vw, 30px);
+  text-align: center;
+  animation: piscar 1.2s infinite;
+  cursor: pointer;
+}
+
+@keyframes piscar {
+  0%   { transform: scale(1);   color: #ff0000; opacity: 1; }
+  33%  { transform: scale(1.2); color: #0400ff; opacity: 0.6; }
+  66%  { transform: scale(1.1); color: #15ff00; opacity: 1; }
+  100% { transform: scale(1);   color: #ff0000; opacity: 1; }
+}
+
+/* ===================== TELA DE COMBATE ===================== */
+#telacombate{
+  width: 100%;
+  min-height: calc(100vh - var(--header-h));
+  background: url(imagens/cenariorpg.png) center/cover no-repeat;
+  position: relative;
+  padding-bottom: 30px;
+}
+/* IMPORTANTE: o script.js troca esta tela com telacombate.style.display = "block",
+   um estilo inline que sempre vence o CSS. Por isso o layout aqui NÃO pode depender
+   de #telacombate ser flex — cada bloco (.info, .turnoacao, .areabatalha) cuida do
+   próprio espaçamento com margin/min-height. */
+
+.info{
+  width: 100%;
+  min-height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 8px 12px;
+}
+.info p {
+  color: yellow;
+  font-size: clamp(11px, 2vw, 16px);
+}
+
+.turnoacao{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 4px 12px;
+}
+.turnoacao p{
+  color: yellow;
+  font-size: clamp(14px, 2.5vw, 28px);
+  text-align: center;
+  transition: opacity 0.3s;
+}
+.animarturnoacao {
+  animation: aparecermsg 1.5s ease;
+}
+@keyframes aparecermsg {
+  0%   { opacity: 0; transform: scale(0.9); }
+  20%  { opacity: 1; transform: scale(1.1); }
+  80%  { opacity: 1; transform: scale(1.1); }
+  100% { opacity: 0; transform: scale(1); }
+}
+
+/* área central: lado do jogador, painel de ações (do lado dele) e lado do inimigo */
+.areabatalha{
+  width: 100%;
+  min-height: 62vh;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: clamp(16px, 3vw, 40px);
+  padding: 10px clamp(12px, 5vw, 80px) 20px;
+}
+
+.ladojogador, .ladoinimigo{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  width: clamp(200px, 34vw, 420px);
+}
+
+.ladoinimigo{
+  margin-left: auto;
+}
+
+/* painel de ações + skills, agora ao lado do personagem principal (não mais fixo/centralizado) */
+.painelacoes{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: clamp(10px, 2vw, 20px);
+}
+
+/* ordem visual: duração dos efeitos -> ícones de efeito -> barra de vida -> personagem */
+.efeitoduracaoeu, .efeitoduracaoinimigo{
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: clamp(8px, 2vw, 35px);
+  min-height: 18px;
+  width: 100%;
+}
+
+.duracao{
+  color: yellow;
+  font-size: clamp(10px, 1.6vw, 16px);
+}
+
+.efeitoseu, .efeitosinimigo{
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.efeitos{
+  background-color: antiquewhite;
+  border-radius: 5px;
+  width: clamp(32px, 6vw, 50px);
+  height: clamp(32px, 6vw, 50px);
+  display: none;
+}
+
+.efeitos img{
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain;
+}
+
+/* barras de vida, agora acima do personagem/inimigo e sem posicionamento fixo em px */
+.vida, .vidainimigo{
+  width: min(220px, 90%);
+  height: clamp(16px, 3vw, 25px);
+  border: black solid 1px;
+  background-color: white;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.vida div, .vidainimigo div{
+  height: 100%;
+  width: 100%;
+  background-color: red;
+  transition: width 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#vidanumeroinimigo, #vidanumerojogador{
+  color: white;
+  font-size: clamp(9px, 1.6vw, 14px);
+}
+
+#imgjogador, #imginimigo{
+  width: clamp(160px, 28vw, 380px);
+  max-width: none;
+  height: auto;
+  max-height: 55vh;
+  object-fit: contain;
+}
+
+@keyframes tremer {
+  0%   { transform: translate(0); }
+  25%  { transform: translate(-5px, 0); }
+  50%  { transform: translate(5px, 0); }
+  75%  { transform: translate(-5px, 0); }
+  100% { transform: translate(0); }
+}
+.dano { animation: tremer 0.3s; }
+
+@keyframes curar {
+  0%   { filter: brightness(1); }
+  50%  { filter: brightness(2) hue-rotate(90deg); }
+  100% { filter: brightness(1); }
+}
+.cura { animation: curar 0.5s; }
+
+@keyframes esquivarKF {
+  0%   { transform: translateX(0); opacity: 1; }
+  50%  { transform: translateX(-20px); opacity: 0.5; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+.esquiva{ animation: esquivarKF 0.4s; }
+
+/* ===================== PAINEL DE AÇÕES + SKILLS ===================== */
+
+.acoes{
+  background-color: antiquewhite;
+  width: min(250px, 44vw);
+  min-width: 190px;
+  padding: 10px 0;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+}
+
+#atacar, #curar, #habilidades{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 14px;
+}
+
+#atacar img, #curar img, #habilidades img{
+  width: clamp(38px, 7vw, 75px) !important;
+  height: clamp(38px, 7vw, 75px) !important;
+}
+
+#atacar p, #curar p, #habilidades p{
+  font-size: clamp(11px, 2vw, 16px);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+#atacar p:hover, #curar p:hover, #habilidades p:hover{
+  color: red;
+  transform: scale(1.2);
+}
+
+.linhadois{
+  width: 88%;
+  align-self: center;
+  height: 2px;
+  background-color: black;
+}
+
+#skill{
+  width: min(320px, 80vw);
+  min-width: 220px;
+  background-color: antiquewhite;
+  border-radius: 10px;
+  padding: 14px 0;
+}
+
+#skill p{
+  font-size: clamp(11px, 1.8vw, 17px);
+  margin: 8px 10px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+#skill p:hover{ color: red; }
+
+.linhatres{
+  width: 88%;
+  margin: 0 auto;
+  height: 2px;
+  background-color: black;
+}
+
+.skillusada {
+  color: gray;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* ===================== RESULTADO / TELA DE VITÓRIA-DERROTA ===================== */
+#resultado{
+  position: fixed;
+  inset: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  text-align: center;
+  font-size: clamp(24px, 6vw, 60px);
+  font-weight: bold;
+  animation: piscarresultado 0.8s infinite;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1100;
+}
+
+@keyframes piscarresultado {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.3); }
+  100% { transform: scale(1); }
+}
+
+/* ===================== TELA DE RECOMPENSA ===================== */
+#telarecompensa{
+  display: none;
+  position: fixed;
+  top: var(--header-h);
+  left: 0;
+  height: calc(100vh - var(--header-h));
+  width: 100%;
+  background: url(imagens/cenariorpg.png) center/cover no-repeat;
+  z-index: 900;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(20px, 4vw, 50px);
+  padding: 100px 20px 30px;
+  overflow-y: auto;
+}
+
+.aa{
+  position: absolute;
+  top: clamp(40px, 10vh, 90px);
+  left: 50%;
+  transform: translateX(-50%);
+  color: yellow;
+  font-size: clamp(14px, 2.6vw, 26px);
+  text-align: center;
+  width: 90%;
+  animation: aaaa 1.2s infinite;
+}
+
+@keyframes aaaa{
+  0%   { transform: translateX(-50%) scale(1); }
+  50%  { transform: translateX(-50%) scale(1.2); }
+  100% { transform: translateX(-50%) scale(1); }
+}
+
+.recompensas{
+  background-color: antiquewhite;
+  width: min(300px, 80vw);
+  min-height: 260px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(13px, 2.2vw, 20px);
+  text-align: center;
+  border-radius: 15px;
+  padding: 20px 10px;
+  gap: 10px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.recompensas img{
+  width: clamp(60px, 12vw, 100px) !important;
+  height: clamp(60px, 12vw, 100px) !important;
+}
+.recompensas:hover{
+  transform: scale(1.08);
+}
+
+.interrogacao{
+  font-size: clamp(36px, 8vw, 60px);
+}
+
+/* ===================== PÁGINA INICIAL (index.html) ===================== */
+.divsobrejogo, .divquemsomos {
+  position: relative;
+  width: 100%;
+  height: clamp(260px, 42vw, 600px);
+  overflow: hidden;
+}
+
+.imgsobrejogo{
+  position: absolute;
+  inset: 0;
+  background: url("imagens/videogame.png") center/cover;
+  filter: blur(10px);
+  transform: scale(1.1);
+}
+
+.imgquemsomos{
+  position: absolute;
+  inset: 0;
+  background-color: #659e84;
+  transform: scale(1.1);
+}
+
+.divtextosobrejogo, .divtextoquemsomos {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: clamp(28px, 6vw, 65px);
+  font-weight: bold;
+  font-family: 'Segoe UI';
+  text-align: center;
+  width: 90%;
+}
+
+#desenvolvedores, #irinicio{
+  position: absolute;
+  bottom: clamp(10px, 3vw, 30px);
+  top: auto;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--verde);
+  height: clamp(50px, 8vw, 75px);
+  width: min(300px, 80vw);
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+#desenvolvedores p, #irinicio p{
+  font-family: 'Segoe UI';
+  color: white;
+  font-weight: bold;
+  font-size: clamp(12px, 2vw, 16px);
+  transition: all 0.3s ease;
+  margin: 0;
+  text-align: center;
+  padding: 0 10px;
+}
+
+#desenvolvedores p:hover, #irinicio p:hover{
+  color: var(--verde-claro);
+  transform: scale(1.1);
+}
+
+.sobreojogo, .sobremim{
+  max-width: 780px;
+  margin: 0 auto;
+  padding: clamp(20px, 5vw, 40px) 20px;
+}
+
+.textosobrejogo, .textosobremim{
+  font-family: 'Segoe UI';
+  line-height: 1.6;
+  margin-bottom: 20px;
+  font-size: clamp(14px, 2.2vw, 18px);
+  text-align: justify;
+}
+
+#aaa{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  padding: 0 20px 40px;
+}
+
+#jornada{
+  background-color: var(--verde);
+  height: clamp(70px, 12vw, 100px);
+  width: min(400px, 90vw);
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  text-align: center;
+  padding: 0 10px;
+}
+
+#jornada p{
+  font-family: "Press Start 2P", system-ui;
+  animation: piscarjornada 1.2s infinite;
+  color: var(--verde-claro);
+  font-size: clamp(11px, 2vw, 16px);
+}
+
+@keyframes piscarjornada {
+  0%   { transform: scale(1); opacity: 1; }
+  50%  { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* ===================== PÁGINA QUEM SOMOS ===================== */
+.umquemsomos{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(24px, 6vw, 150px);
+  width: 100%;
+  align-items: center;
+  padding: 20px;
+  text-align: center;
+}
+
+.umquemsomos img{
+  width: clamp(150px, 30vw, 250px) !important;
+  height: auto !important;
+}
+
+.textoquemsomos{
+  max-width: 400px;
+  text-align: left;
+}
+
+.nome{
+  font-weight: bolder;
+  font-size: clamp(18px, 3vw, 28px);
+}
+
+.coisas{
+  font-weight: bold;
+  font-size: clamp(14px, 2.2vw, 22px);
+  color: rgb(78, 78, 78);
+}
+
+/* ===================== AJUSTES PARA TELAS PEQUENAS ===================== */
+@media (max-width: 700px){
+  .textoquemsomos{
+    text-align: center;
+  }
+
+  .areabatalha{
+    justify-content: space-around;
+  }
+
+  .ladoinimigo{
+    margin-left: 0;
+  }
+
+  #imgjogador, #imginimigo{
+    max-height: 22vh;
+  }
+
+  #telacombate{
+    padding-bottom: clamp(160px, 34vh, 300px);
+  }
+}
+
+@media (max-width: 480px){
+  .painelacoes{
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .acoes, #skill{
+    width: min(320px, 92vw);
+  }
+}
