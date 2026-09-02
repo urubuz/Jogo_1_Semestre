@@ -1,8 +1,16 @@
+# Jogo 1º Semestre
+
 Um jogo embutido num site, feito com HTML, CSS e JavaScript.
 
-Nele, você joga um RPG de turnos onde pode selecionar 2 personagens diferentes, além de ter 3 escolhas de ação por turno.
+## Sobre o jogo
 
-O jogo contém uma série de efeitos possíveis, ativados por ações, além de uma recompensa após vencer a primeira batalha.
+Um RPG de turnos onde você:
 
-Clique no link para jogar:
-https://urubuz.github.io/Jogo_1_Semestre/
+- Seleciona entre 2 personagens diferentes
+- Tem 3 escolhas de ação por turno
+- Enfrenta uma série de efeitos possíveis, ativados por ações
+- Recebe uma recompensa após vencer a primeira batalha
+
+## Como jogar
+
+🔗 [urubuz.github.io/Jogo_1_Semestre](https://urubuz.github.io/Jogo_1_Semestre/)
